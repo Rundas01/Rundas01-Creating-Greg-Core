@@ -3,9 +3,6 @@ buildscript {
         maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
         mavenCentral()
     }
-    dependencies {
-        classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
-    }
 }
 
 plugins {
@@ -66,7 +63,35 @@ repositories {
     maven {
         url = "https://thedarkcolour.github.io/KotlinForForge/"
     }
+    maven {
+        url "https://maven.latvian.dev/releases"
+        content {
+            includeGroup "dev.latvian.mods"
+            includeGroup "dev.latvian.apps"
+        }
+    }
 
+    maven {
+        url 'https://jitpack.io'
+        content {
+            includeGroup "com.github.rtyley"
+        }
+    }
+
+    maven {
+        url = "https://maven.architectury.dev"
+    }
+
+    maven {
+        name = "Modrinth"
+        url = "https://api.modrinth.com/maven"
+    }
+
+    maven {
+        name = 'ModKit'
+        url 'https://jitpack.io'
+        content { includeGroup 'com.github.thedarkcolour' }
+    }
 }
 
 version = mod_version
@@ -127,25 +152,17 @@ legacyForge {
         }
     }
 }
-jar {
-    manifest.attributes([
-            "MixinConfigs": "examplemod.mixins.json"
-    ])
-}
 
 apply from: "$rootDir/gradle/scripts/spotless.gradle"
 
 dependencies {
     compileOnly("org.jetbrains:annotations:26.0.1")
 
-    // Mixin
-    annotationProcessor('org.spongepowered:mixin:0.8.5:processor')
-
     // JEI, EMI, Jade
     modCompileOnly("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}")
     modCompileOnly("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
     modRuntimeOnly("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
-    modRuntimeOnly("dev.emi:emi-forge:${emi_version}+${minecraft_version}")
+    //modRuntimeOnly("dev.emi:emi-forge:${emi_version}+${minecraft_version}")
     modRuntimeOnly("curse.maven:jade-324717:5390389")
 
     // GregTech and dependencies
@@ -157,12 +174,24 @@ dependencies {
     // lombok
     compileOnly 'org.projectlombok:lombok:1.18.24'
     annotationProcessor 'org.projectlombok:lombok:1.18.24'
-}
 
-// See com.example.examplemod.mixin.DummyMixin for information about mixins
-mixin {
-    add sourceSets.main, "mixins.${mod_id}.refmap.json"
-    config "${mod_id}.mixins.json"
+    // Kube
+    modImplementation("dev.latvian.mods:kubejs-forge:${kubejs_version}")
+
+    // Arschitekturi
+    modImplementation("dev.architectury:architectury-forge:${architectury_version}")
+
+    // Rino
+    modImplementation("dev.latvian.mods:rhino-forge:${rhino_version}")
+
+    // Forsetry
+    modImplementation("maven.modrinth:forestry-community-edition:${forsetry_version}")
+
+    // Patschuli
+    modImplementation("vazkii.patchouli:Patchouli:${patchouli_version}")
+
+    // Modkit
+    modImplementation('com.github.thedarkcolour:ModKit:0302f9aa42')
 }
 
 tasks.named('processResources', ProcessResources).configure {
@@ -192,5 +221,4 @@ tasks.withType(JavaCompile).configureEach {
     // If Javadoc is generated, this must be specified in that task too.
     options.encoding = "UTF-8"
     options.release.set(17)
-    options.compilerArgs << "-Aquiet=true" // Suppress mixin notes
 }
