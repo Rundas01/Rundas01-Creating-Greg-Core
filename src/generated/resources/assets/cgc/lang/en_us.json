@@ -1,0 +1,17 @@
+{
+  "material.cgc.free_electron_gas": "Free Electron Gas",
+  "material.cgc.free_neutron_gas": "Free Neutron Gas",
+  "material.cgc.free_proton_gas": "Free Proton Gas",
+  "material.cgc.material.gtceu.americium241": "Material.gtceu.americium241",
+  "material.cgc.material.gtceu.bismuth212": "Material.gtceu.bismuth212",
+  "material.cgc.material.gtceu.lead208": "Material.gtceu.lead208",
+  "material.cgc.material.gtceu.lead212": "Material.gtceu.lead212",
+  "material.cgc.material.gtceu.polonium212": "Material.gtceu.polonium212",
+  "material.cgc.material.gtceu.polonium216": "Material.gtceu.polonium216",
+  "material.cgc.material.gtceu.protactinium233": "Material.gtceu.protactinium233",
+  "material.cgc.material.gtceu.radium224": "Material.gtceu.radium224",
+  "material.cgc.material.gtceu.radon220": "Material.gtceu.radon220",
+  "material.cgc.material.gtceu.thallium208": "Material.gtceu.thallium208",
+  "material.cgc.material.gtceu.thorium228": "Material.gtceu.thorium228",
+  "material.cgc.material.gtceu.uranium237": "Material.gtceu.uranium237"
+}

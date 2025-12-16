@@ -1,4 +1,4 @@
-package com.rundas.cgc.integration.forsetri.bee;
+package com.rundas.cgc.integration.forestry.bee;
 
 import forestry.api.genetics.ForestryTaxa;
 import forestry.api.genetics.alleles.BeeChromosomes;
@@ -6,6 +6,7 @@ import forestry.api.genetics.alleles.ForestryAlleles;
 import forestry.api.plugin.IGeneticRegistration;
 
 public class CGCBeeTaxonomy {
+
     public static void defineTaxa(IGeneticRegistration genetics) {
         genetics.defineTaxon(ForestryTaxa.CLASS_INSECTS, ForestryTaxa.ORDER_HYMNOPTERA, order -> {
             order.defineSubTaxon(ForestryTaxa.FAMILY_BEES, family -> {

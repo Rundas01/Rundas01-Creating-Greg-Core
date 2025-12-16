@@ -1,13 +1,15 @@
-package com.rundas.cgc.integration.forsetri.bee.item;
+package com.rundas.cgc.integration.forestry.bee.item;
+
+import net.minecraft.world.item.ItemStack;
 
 import forestry.core.items.ItemForestry;
 import forestry.core.items.definitions.IColoredItem;
 import lombok.Getter;
-import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 @Getter
 public class CGCItemHoneyComb extends ItemForestry implements IColoredItem {
+
     private final CGCHoneyComb type;
 
     public CGCItemHoneyComb(CGCHoneyComb type) {

@@ -1,10 +1,11 @@
-package com.rundas.cgc.integration.forsetri.bee;
+package com.rundas.cgc.integration.forestry.bee;
 
 public class CGCBeeTaxa {
-    //Species
+
+    // Species
     public static final String SPECIES_HYDROGEN = "Hydrogen";
 
-    //Gena
+    // Gena
     public static final String GENUS_METALLIS_ALKALINE = "Alkaline Metals";
     public static final String GENUS_METALLIS_ALKALINE_TERRAE = "Earth Alkaline Metals";
     public static final String GENUS_METALLORUM_TRANSITUS = "Transition Metals";

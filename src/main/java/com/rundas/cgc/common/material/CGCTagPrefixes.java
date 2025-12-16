@@ -2,6 +2,7 @@ package com.rundas.cgc.common.material;
 
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
+
 import com.rundas.cgc.client.CGCMaterialIconTypes;
 
 import java.util.function.Predicate;
@@ -12,9 +13,9 @@ public class CGCTagPrefixes {
     public static TagPrefix depletedNuclearFuel;
     public static TagPrefix catalystBed;
 
-    public static final Predicate<Material> isValidFuel = m -> m.hasProperty(CGCPropertyKeys.NUCLEAR) && m.getProperty(CGCPropertyKeys.NUCLEAR).isFuel();
+    public static final Predicate<Material> isValidFuel = m -> m.hasProperty(CGCPropertyKeys.NUCLEAR) &&
+            m.getProperty(CGCPropertyKeys.NUCLEAR).isFuel();
     public static final Predicate<Material> isCatalyst = m -> m.hasFlag(CGCMaterialFlags.IS_CATALYST);
-
 
     public static void init() {
         nuclearFuel = new TagPrefix("nuclearFuel")

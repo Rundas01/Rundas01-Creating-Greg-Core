@@ -7,7 +7,7 @@ import com.gregtechceu.gtceu.api.data.chemical.material.properties.PropertyKey;
 
 /**
  * @param specificHeatCapacity specific heat capacity of the material in kJ/(g * K) or EU/(g * K) respectively.
- * @param hotCoolant the corresponding hot coolant of the material.
+ * @param hotCoolant           the corresponding hot coolant of the material.
  */
 public record CoolantProperty(double specificHeatCapacity, Material hotCoolant) implements IMaterialProperty {
 

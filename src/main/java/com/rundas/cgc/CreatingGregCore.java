@@ -10,10 +10,8 @@ import com.gregtechceu.gtceu.api.registry.registrate.GTRegistrate;
 import com.gregtechceu.gtceu.api.sound.SoundEntry;
 
 import com.lowdragmc.lowdraglib.Platform;
-import com.rundas.cgc.client.CGCClient;
-import com.rundas.cgc.common.machine.CGCMachines;
-import com.rundas.cgc.common.material.CGCMaterials;
-import com.rundas.cgc.common.recipe.CGCRecipeTypes;
+
+import com.rundas.cgc.integration.forestry.bee.item.CGCHoneyComb;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
@@ -24,6 +22,10 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
+import com.rundas.cgc.client.CGCClient;
+import com.rundas.cgc.common.machine.CGCMachines;
+import com.rundas.cgc.common.material.CGCMaterials;
+import com.rundas.cgc.common.recipe.CGCRecipeTypes;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
