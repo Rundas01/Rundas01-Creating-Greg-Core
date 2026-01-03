@@ -92,6 +92,21 @@ repositories {
         url 'https://jitpack.io'
         content { includeGroup 'com.github.thedarkcolour' }
     }
+
+    maven {
+        name "createmod maven"
+        url "https://maven.createmod.net/"
+    }
+
+    maven {
+        // location of a maven mirror for JEI files, as a fallback
+        name = "ModMaven"
+        url = "https://modmaven.dev"
+        content {
+            includeGroup("com.simibubi.create")
+            includeGroup("dev.engine-room.flywheel")
+        }
+    }
 }
 
 version = mod_version
@@ -162,7 +177,7 @@ dependencies {
     modCompileOnly("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}")
     modCompileOnly("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
     modRuntimeOnly("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
-    //modRuntimeOnly("dev.emi:emi-forge:${emi_version}+${minecraft_version}")
+    modRuntimeOnly("dev.emi:emi-forge:${emi_version}+${minecraft_version}")
     modRuntimeOnly("curse.maven:jade-324717:5390389")
 
     // GregTech and dependencies
@@ -178,20 +193,33 @@ dependencies {
     // Kube
     modImplementation("dev.latvian.mods:kubejs-forge:${kubejs_version}")
 
-    // Arschitekturi
+    // Architectury
     modImplementation("dev.architectury:architectury-forge:${architectury_version}")
 
-    // Rino
+    // Rhino
     modImplementation("dev.latvian.mods:rhino-forge:${rhino_version}")
 
     // Forsetry
     modImplementation("maven.modrinth:forestry-community-edition:${forsetry_version}")
 
-    // Patschuli
+    // Patchouli
     modImplementation("vazkii.patchouli:Patchouli:${patchouli_version}")
 
     // Modkit
     modImplementation('com.github.thedarkcolour:ModKit:0302f9aa42')
+
+    // Flywheel
+    modCompileOnly("dev.engine-room.flywheel:flywheel-forge-api-${minecraft_version}:${flywheel_version}")
+    modRuntimeOnly("dev.engine-room.flywheel:flywheel-forge-${minecraft_version}:${flywheel_version}")
+
+    // Create
+    modImplementation("com.simibubi.create:create-${minecraft_version}:${create_version}")
+
+    // CVI
+    modImplementation("curse.maven:vintage-improvements-ssw-edition-1255448:6708676")
+
+    // Greate
+    modImplementation("maven.modrinth:greate:${greate_version}")
 }
 
 tasks.named('processResources', ProcessResources).configure {

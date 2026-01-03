@@ -1,17 +1,15 @@
 package com.rundas.cgc.integration.forestry.bee.item;
 
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
-
 import com.gregtechceu.gtceu.common.data.GTMaterials;
+
 import net.minecraft.util.StringRepresentable;
 
 import com.rundas.cgc.common.material.CGCMaterialFlags;
 import forestry.api.core.IItemSubtype;
-import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Locale;
-import java.util.Objects;
 
 public enum CGCHoneyComb implements StringRepresentable, IItemSubtype {
 

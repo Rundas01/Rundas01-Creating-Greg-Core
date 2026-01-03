@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "cgc:block/machine/fission_chamber",
+      "x": 90
+    },
+    "facing=east": {
+      "model": "cgc:block/machine/fission_chamber",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "cgc:block/machine/fission_chamber"
+    },
+    "facing=south": {
+      "model": "cgc:block/machine/fission_chamber",
+      "y": 180
+    },
+    "facing=up": {
+      "gtceu:z": 180,
+      "model": "cgc:block/machine/fission_chamber",
+      "x": 270
+    },
+    "facing=west": {
+      "model": "cgc:block/machine/fission_chamber",
+      "y": 270
+    }
+  }
+}

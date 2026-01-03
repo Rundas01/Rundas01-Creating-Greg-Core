@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "cgc:block/machine/lv_mixing_reactor",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "cgc:block/machine/lv_mixing_reactor"
+    },
+    "facing=south": {
+      "model": "cgc:block/machine/lv_mixing_reactor",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "cgc:block/machine/lv_mixing_reactor",
+      "y": 270
+    }
+  }
+}

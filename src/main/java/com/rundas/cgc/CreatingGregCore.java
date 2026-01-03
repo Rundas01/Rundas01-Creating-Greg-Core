@@ -11,11 +11,7 @@ import com.gregtechceu.gtceu.api.sound.SoundEntry;
 
 import com.lowdragmc.lowdraglib.Platform;
 
-import com.rundas.cgc.integration.forestry.bee.item.CGCHoneyComb;
-import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Items;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -23,6 +19,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 import com.rundas.cgc.client.CGCClient;
+import com.rundas.cgc.common.data.CGCConfigHolder;
+import com.rundas.cgc.common.data.CGCDatagen;
 import com.rundas.cgc.common.machine.CGCMachines;
 import com.rundas.cgc.common.material.CGCMaterials;
 import com.rundas.cgc.common.recipe.CGCRecipeTypes;
@@ -37,8 +35,10 @@ public class CreatingGregCore {
     public static final Logger LOGGER = LogManager.getLogger();
     public static GTRegistrate CGC_REGISTRATE = GTRegistrate.create(CreatingGregCore.MOD_ID);
 
-    public CreatingGregCore() {
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+    public CreatingGregCore(FMLJavaModLoadingContext context) {
+        CreatingGregCore.init();
+        IEventBus modEventBus = context.getModEventBus();
+        modEventBus.register(this);
 
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::clientSetup);
@@ -51,28 +51,20 @@ public class CreatingGregCore {
         modEventBus.addGenericListener(MachineDefinition.class, this::registerMachines);
         modEventBus.addGenericListener(SoundEntry.class, this::registerSounds);
 
-        // Most other events are fired on Forge's bus.
-        // If we want to use annotations to register event listeners,
-        // we need to register our object like this!
-        MinecraftForge.EVENT_BUS.register(this);
-
-        CGC_REGISTRATE.registerRegistrate();
-
         if (Platform.isClient()) {
             CGCClient.init(modEventBus);
         }
     }
 
-    private void commonSetup(final FMLCommonSetupEvent event) {
-        event.enqueueWork(() -> {
-            LOGGER.info("Hello from common setup! This is *after* registries are done, so we can do this:");
-            LOGGER.info("Look, I found a {}!", Items.DIAMOND);
-        });
+    private static void init() {
+        CGC_REGISTRATE.registerRegistrate();
+        CGCConfigHolder.init();
+        CGCDatagen.init();
     }
 
-    private void clientSetup(final FMLClientSetupEvent event) {
-        LOGGER.info("Hey, we're on Minecraft version {}!", Minecraft.getInstance().getLaunchedVersion());
-    }
+    private void commonSetup(final FMLCommonSetupEvent event) {}
+
+    private void clientSetup(final FMLClientSetupEvent event) {}
 
     /**
      * Create a ResourceLocation in the format "modid:path"

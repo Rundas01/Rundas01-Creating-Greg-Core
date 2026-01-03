@@ -4,7 +4,6 @@ import com.gregtechceu.gtceu.api.data.chemical.Element;
 import com.gregtechceu.gtceu.api.registry.GTRegistries;
 
 import static com.gregtechceu.gtceu.common.data.GTElements.*;
-import static com.rundas.cgc.util.CGCForestryUtil.registerBeeProperty;
 
 public class CGCElements {
 
@@ -22,7 +21,8 @@ public class CGCElements {
     public static final Element Am241 = createAndRegisterIsotope(Am, 241);
 
     public static Element createAndRegisterIsotope(Element element, long nucleons) {
-        Element e = new Element(element.protons(), nucleons - element.protons(), 0, "", element.name() + "_" + nucleons, element.symbol(), true);
+        Element e = new Element(element.protons(), nucleons - element.protons(), 0, "", element.name() + "_" + nucleons,
+                element.symbol(), true);
         GTRegistries.ELEMENTS.register(element.name() + "_" + nucleons, e);
         return e;
     }

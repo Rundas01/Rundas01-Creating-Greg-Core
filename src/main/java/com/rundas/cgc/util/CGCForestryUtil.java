@@ -1,20 +1,23 @@
 package com.rundas.cgc.util;
 
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
+
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Tuple;
+import net.minecraft.world.item.ItemStack;
+
 import com.rundas.cgc.common.material.BeeProperty;
 import com.rundas.cgc.common.material.CGCPropertyKeys;
 import com.rundas.cgc.integration.forestry.bee.item.CGCBeeItems;
 import com.rundas.cgc.integration.forestry.bee.item.CGCHoneyComb;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.Tuple;
-import net.minecraft.world.item.ItemStack;
 import org.apache.commons.lang3.tuple.Triple;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.annotation.Nullable;
 
 import static com.rundas.cgc.integration.forestry.bee.CGCBeeSpecies.*;
 
@@ -157,15 +160,26 @@ public class CGCForestryUtil {
         return CGCBeeItems.BEE_COMBS.stack(comb);
     }
 
-    public static void registerBeeProperty(Material material, String genus, boolean isShiny, List<Triple<ResourceLocation, ResourceLocation, Float>> mutations, List<Tuple<ItemStack, Float>> products, @Nullable List<Tuple<ItemStack, Float>> specialties) {
-        material.setProperty(CGCPropertyKeys.BEE, new BeeProperty(genus, material.getMaterialRGB(), material.getMaterialSecondaryRGB(), mutations, isShiny, products, specialties));
+    public static void registerBeeProperty(Material material, String genus, boolean isShiny,
+                                           List<Triple<ResourceLocation, ResourceLocation, Float>> mutations,
+                                           List<Tuple<ItemStack, Float>> products,
+                                           @Nullable List<Tuple<ItemStack, Float>> specialties) {
+        material.setProperty(CGCPropertyKeys.BEE, new BeeProperty(genus, material.getMaterialRGB(),
+                material.getMaterialSecondaryRGB(), mutations, isShiny, products, specialties));
     }
 
-    public static void registerBeeProperty(Material material, String genus, boolean isShiny, List<Tuple<ItemStack, Float>> products, @Nullable List<Tuple<ItemStack, Float>> specialties) {
-        material.setProperty(CGCPropertyKeys.BEE, new BeeProperty(genus, material.getMaterialRGB(), material.getMaterialSecondaryRGB(), getElementMutations(material.getProtons()), isShiny, products, specialties));
+    public static void registerBeeProperty(Material material, String genus, boolean isShiny,
+                                           List<Tuple<ItemStack, Float>> products,
+                                           @Nullable List<Tuple<ItemStack, Float>> specialties) {
+        material.setProperty(CGCPropertyKeys.BEE,
+                new BeeProperty(genus, material.getMaterialRGB(), material.getMaterialSecondaryRGB(),
+                        getElementMutations(material.getProtons()), isShiny, products, specialties));
     }
 
-    public static void registerBeeProperty(Material material, String genus, boolean isShiny, List<Tuple<ItemStack, Float>> products) {
-        material.setProperty(CGCPropertyKeys.BEE, new BeeProperty(genus, material.getMaterialRGB(), material.getMaterialSecondaryRGB(), getElementMutations(material.getProtons()), isShiny, products, null));
+    public static void registerBeeProperty(Material material, String genus, boolean isShiny,
+                                           List<Tuple<ItemStack, Float>> products) {
+        material.setProperty(CGCPropertyKeys.BEE,
+                new BeeProperty(genus, material.getMaterialRGB(), material.getMaterialSecondaryRGB(),
+                        getElementMutations(material.getProtons()), isShiny, products, null));
     }
 }

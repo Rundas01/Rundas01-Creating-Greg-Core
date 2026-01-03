@@ -9,9 +9,11 @@ import java.util.List;
 
 /**
  * @param solvent   Solvent of the Solution.
- * @param solutions List of all solutions of the material using the given solvent.
+ * @param solution Normal Solution
+ * @param crystallizedSolution The Crystallized Solution
+ * @param dilutedSolutions If the material has diluted solutions, this list contains them
  */
-public record SolutionProperty(Material solvent, List<Material> solutions) implements IMaterialProperty {
+public record SolutionProperty(Material solvent, Material solution, Material crystallizedSolution, List<Material> dilutedSolutions) implements IMaterialProperty {
 
     @Override
     public void verifyProperty(MaterialProperties properties) {

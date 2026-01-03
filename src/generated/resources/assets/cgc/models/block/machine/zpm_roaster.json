@@ -1,0 +1,61 @@
+{
+  "parent": "minecraft:block/block",
+  "loader": "gtceu:machine",
+  "machine": "cgc:zpm_roaster",
+  "variants": {
+    "recipe_logic_status=idle": {
+      "model": {
+        "parent": "gtceu:block/casings/voltage/zpm",
+        "textures": {
+          "overlay_back": "cgc:block/machines/roaster/overlay_back",
+          "overlay_bottom": "cgc:block/machines/roaster/overlay_bottom",
+          "overlay_front": "cgc:block/machines/roaster/overlay_front",
+          "overlay_side": "cgc:block/machines/roaster/overlay_side",
+          "overlay_top": "cgc:block/machines/roaster/overlay_top"
+        }
+      }
+    },
+    "recipe_logic_status=suspend": {
+      "model": {
+        "parent": "gtceu:block/casings/voltage/zpm",
+        "textures": {
+          "overlay_back": "cgc:block/machines/roaster/overlay_back",
+          "overlay_bottom": "cgc:block/machines/roaster/overlay_bottom",
+          "overlay_front": "cgc:block/machines/roaster/overlay_front",
+          "overlay_side": "cgc:block/machines/roaster/overlay_side",
+          "overlay_top": "cgc:block/machines/roaster/overlay_top"
+        }
+      }
+    },
+    "recipe_logic_status=waiting": {
+      "model": {
+        "parent": "gtceu:block/casings/voltage/zpm",
+        "textures": {
+          "overlay_back": "cgc:block/machines/roaster/overlay_back_active",
+          "overlay_bottom": "cgc:block/machines/roaster/overlay_bottom_active",
+          "overlay_front": "cgc:block/machines/roaster/overlay_front_active",
+          "overlay_front_emissive": "cgc:block/machines/roaster/overlay_front_active_emissive",
+          "overlay_side": "cgc:block/machines/roaster/overlay_side_active",
+          "overlay_side_emissive": "cgc:block/machines/roaster/overlay_side_active_emissive",
+          "overlay_top": "cgc:block/machines/roaster/overlay_top_active",
+          "overlay_top_emissive": "cgc:block/machines/roaster/overlay_top_active_emissive"
+        }
+      }
+    },
+    "recipe_logic_status=working": {
+      "model": {
+        "parent": "gtceu:block/casings/voltage/zpm",
+        "textures": {
+          "overlay_back": "cgc:block/machines/roaster/overlay_back_active",
+          "overlay_bottom": "cgc:block/machines/roaster/overlay_bottom_active",
+          "overlay_front": "cgc:block/machines/roaster/overlay_front_active",
+          "overlay_front_emissive": "cgc:block/machines/roaster/overlay_front_active_emissive",
+          "overlay_side": "cgc:block/machines/roaster/overlay_side_active",
+          "overlay_side_emissive": "cgc:block/machines/roaster/overlay_side_active_emissive",
+          "overlay_top": "cgc:block/machines/roaster/overlay_top_active",
+          "overlay_top_emissive": "cgc:block/machines/roaster/overlay_top_active_emissive"
+        }
+      }
+    }
+  }
+}
