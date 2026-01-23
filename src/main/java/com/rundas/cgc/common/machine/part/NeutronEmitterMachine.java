@@ -16,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
 
 import static com.rundas.cgc.CreatingGregCore.CGC_REGISTRATE;
 import static com.rundas.cgc.CreatingGregCore.id;
-import static com.rundas.cgc.common.material.CGCMaterials.FreeNeutronGas;
+import static com.rundas.cgc.common.material.materials.CGCMaterials.FreeNeutronGas;
 
 public class NeutronEmitterMachine extends FluidHatchPartMachine {
 

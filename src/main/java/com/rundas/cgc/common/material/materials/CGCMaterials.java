@@ -1,9 +1,12 @@
-package com.rundas.cgc.common.material;
+package com.rundas.cgc.common.material.materials;
 
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.DustProperty;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.PropertyKey;
 
+import com.rundas.cgc.common.material.CGCPropertyKeys;
+import com.rundas.cgc.common.material.PhysicsProperty;
+import com.rundas.cgc.common.material.SolutionProperty;
 import net.minecraft.util.Tuple;
 
 import com.rundas.cgc.integration.forestry.bee.CGCBeeSpecies;
@@ -18,11 +21,12 @@ import java.util.List;
 
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.rundas.cgc.CreatingGregCore.id;
-import static com.rundas.cgc.common.material.CGCNuclearMaterials.*;
+import static com.rundas.cgc.common.material.materials.CGCNuclearMaterials.*;
 import static com.rundas.cgc.common.material.CGCPropertyKeys.PHYSICS;
 import static com.rundas.cgc.integration.forestry.bee.CGCBeeTaxa.*;
 import static com.rundas.cgc.util.CGCForestryUtil.combStack;
 import static com.rundas.cgc.util.CGCForestryUtil.registerBeeProperty;
+import static com.rundas.cgc.util.CGCMaterialCreationUtil.*;
 import static com.rundas.cgc.util.CGCMaterialUtil.getMaxTier;
 import static com.rundas.cgc.util.CGCNuclearUtil.registerNuclearProperty;
 
@@ -31,8 +35,14 @@ public class CGCMaterials {
     public static Material FreeProtonGas;
     public static Material FreeElectronGas;
     public static Material FreeNeutronGas;
+    public static Material IronIIIOxide;
+    public static Material Berndtite;
+    public static Material TinIVNitrate;
+    public static Material TinIVNitrateHexahydrate;
+    public static Material TinIVNitrateHexahydrateWaterSolution;
 
     public static void init() {
+        registerPhysicsProperties();
         FreeProtonGas = new Material.Builder(id("free_proton_gas"))
                 .gas().formula("p+")
                 .color(0xAC1B1B).buildAndRegister();
@@ -45,6 +55,13 @@ public class CGCMaterials {
                 .gas().formula("n")
                 .color(0x3C60E8).buildAndRegister();
 
+        IronIIIOxide = cgcDustAliasMaterial("iron_iii_oxide", Hematite, 1, -824.2);
+        Berndtite = cgcOreMaterial("berndtite", null, null, Arrays.asList(new Tuple<>(Tin, 1), new Tuple<>(Sulfur, 4)), 1, -131, null);
+        TinIVNitrate = cgcDustMaterial("tin_iv_nitrate", null, null, Arrays.asList(new Tuple<>(Tin, 1), new Tuple<>(Nitrogen, 4), new Tuple<>(Oxygen, 12)), null, 2, -4400.0, "Sn(NO3)4");
+        TinIVNitrateHexahydrate = cgcDustMaterial("tin_iv_nitrate_hexahydrate", null, null, Arrays.asList(new Tuple<>(TinIVNitrate, 1), new Tuple<>(Water, 6)), null, 2, null, null);
+        TinIVNitrateHexahydrateWaterSolution = cgcFluidMaterial("tin_iv_nitrate_hexahydrate_water_solution", null, null, Arrays.asList(new Tuple<>(TinIVNitrateHexahydrate, 1), new Tuple<>(Water, 1)), 2, null, null);
+        //3 SnS4 + 32 (HNO3)(H2O) = 3 ((Sn(NO3)4)(H2O)6)(H2O) + 12 SO2 + 20 NO + 27 H2O
+        registerOreprocMaterials(Berndtite, Arrays.asList(new Tuple<>(TinIVNitrateHexahydrateWaterSolution, 3)), null);
         CGCNuclearMaterials.init();
     }
 
@@ -64,11 +81,20 @@ public class CGCMaterials {
                         Nobelium, Lawrencium, Rutherfordium, Dubnium, Seaborgium, Bohrium, Hassium, Meitnerium,
                         Roentgenium, Copernicium, Nihonium,
                         Flerovium, Moscovium, Livermorium, Tennessine, Oganesson));
-
-        registerPhysicsProperties();
     }
 
     private static void registerPhysicsProperties() {
+        /*for (Material material : MaterialRegistryManager.getInstance().getRegisteredMaterials()) {
+            if (material.isElement()) {
+                if (material.hasFluid() && material.hasProperty(PropertyKey.DUST)) {
+                    registerPhysicsPropertyMetal(material, 1, 0);
+                } else if (material.hasFluid()) {
+                    registerPhysicsPropertyFluidOrGas(material, 1, 0);
+                } else {
+                    registerPhysicsPropertyNonmetal(material, 1, 0);
+                }
+            }
+        }*/
         registerPhysicsPropertyFluidOrGas(Steam, 1, -241.83);
         registerPhysicsPropertyFluidOrGas(SulfurDioxide, 1, -296.81);
         registerPhysicsPropertyFluidOrGas(SulfurTrioxide, 1, -395.7);

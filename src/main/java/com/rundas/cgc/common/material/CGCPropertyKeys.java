@@ -9,4 +9,6 @@ public class CGCPropertyKeys {
     public static final PropertyKey<NuclearProperty> NUCLEAR = new PropertyKey<>("nuclear", NuclearProperty.class);
     public static final PropertyKey<CoolantProperty> COOLANT = new PropertyKey<>("coolant", CoolantProperty.class);
     public static final PropertyKey<BeeProperty> BEE = new PropertyKey<>("bee", BeeProperty.class);
+    public static final PropertyKey<OreprocProperty> OREPROC = new PropertyKey<>("oreproc", OreprocProperty.class);
+
 }

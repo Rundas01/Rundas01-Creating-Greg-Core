@@ -1,9 +1,9 @@
-package com.rundas.cgc.common.material;
+package com.rundas.cgc.common.material.materials;
 
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
-import static com.rundas.cgc.common.material.CGCElements.*;
+import static com.rundas.cgc.common.material.materials.CGCElements.*;
 import static com.rundas.cgc.util.CGCMaterialUtil.isotopeMaterial;
 
 public class CGCNuclearMaterials {

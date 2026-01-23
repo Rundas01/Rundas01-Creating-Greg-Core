@@ -45,7 +45,7 @@ public class CGCRecipeTypes {
             .setSound(GTSoundEntries.COOLING)
             .setEUIO(IO.IN);
 
-    public static final GTRecipeType DEHYDRATOR_RECIPES = register("dehydrator", ELECTRIC)
+    public static final GTRecipeType VACUUM_FILTER_RECIPES = register("vacuum_filter", ELECTRIC)
             .setMaxIOSize(1, 6, 1, 6)
             .setSlotOverlay(false, true, GuiTextures.FLUID_SLOT)
             .setSlotOverlay(true, true, GuiTextures.FLUID_SLOT)

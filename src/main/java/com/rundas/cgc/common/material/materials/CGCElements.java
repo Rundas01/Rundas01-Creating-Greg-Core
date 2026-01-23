@@ -1,4 +1,4 @@
-package com.rundas.cgc.common.material;
+package com.rundas.cgc.common.material.materials;
 
 import com.gregtechceu.gtceu.api.data.chemical.Element;
 import com.gregtechceu.gtceu.api.registry.GTRegistries;

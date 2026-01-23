@@ -25,5 +25,6 @@ public class CGCLangHandler extends LangHandler {
 
     private static void processRecipeTypeLang(RegistrateLangProvider provider) {
         provider.add("cgc.roaster", "Roasting");
+        provider.add("cgc.vacuum_filter", "Vacuum Filtration");
     }
 }

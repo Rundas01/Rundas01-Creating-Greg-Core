@@ -22,7 +22,7 @@ import com.rundas.cgc.client.CGCClient;
 import com.rundas.cgc.common.data.CGCConfigHolder;
 import com.rundas.cgc.common.data.CGCDatagen;
 import com.rundas.cgc.common.machine.CGCMachines;
-import com.rundas.cgc.common.material.CGCMaterials;
+import com.rundas.cgc.common.material.materials.CGCMaterials;
 import com.rundas.cgc.common.recipe.CGCRecipeTypes;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

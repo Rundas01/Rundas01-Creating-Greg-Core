@@ -1,0 +1,47 @@
+{
+  "parent": "minecraft:block/block",
+  "loader": "gtceu:machine",
+  "machine": "cgc:uhv_vacuum_filter",
+  "variants": {
+    "recipe_logic_status=idle": {
+      "model": {
+        "parent": "gtceu:block/casings/voltage/uhv",
+        "textures": {
+          "overlay_back": "cgc:block/machines/vacuum_filter/overlay_back",
+          "overlay_front": "cgc:block/machines/vacuum_filter/overlay_front",
+          "overlay_side": "cgc:block/machines/vacuum_filter/overlay_side"
+        }
+      }
+    },
+    "recipe_logic_status=suspend": {
+      "model": {
+        "parent": "gtceu:block/casings/voltage/uhv",
+        "textures": {
+          "overlay_back": "cgc:block/machines/vacuum_filter/overlay_back",
+          "overlay_front": "cgc:block/machines/vacuum_filter/overlay_front",
+          "overlay_side": "cgc:block/machines/vacuum_filter/overlay_side"
+        }
+      }
+    },
+    "recipe_logic_status=waiting": {
+      "model": {
+        "parent": "gtceu:block/casings/voltage/uhv",
+        "textures": {
+          "overlay_back": "cgc:block/machines/vacuum_filter/overlay_back_active",
+          "overlay_front": "cgc:block/machines/vacuum_filter/overlay_front_active",
+          "overlay_side": "cgc:block/machines/vacuum_filter/overlay_side_active"
+        }
+      }
+    },
+    "recipe_logic_status=working": {
+      "model": {
+        "parent": "gtceu:block/casings/voltage/uhv",
+        "textures": {
+          "overlay_back": "cgc:block/machines/vacuum_filter/overlay_back_active",
+          "overlay_front": "cgc:block/machines/vacuum_filter/overlay_front_active",
+          "overlay_side": "cgc:block/machines/vacuum_filter/overlay_side_active"
+        }
+      }
+    }
+  }
+}
