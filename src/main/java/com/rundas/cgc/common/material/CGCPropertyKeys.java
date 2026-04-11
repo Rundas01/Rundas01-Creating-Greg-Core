@@ -10,5 +10,5 @@ public class CGCPropertyKeys {
     public static final PropertyKey<CoolantProperty> COOLANT = new PropertyKey<>("coolant", CoolantProperty.class);
     public static final PropertyKey<BeeProperty> BEE = new PropertyKey<>("bee", BeeProperty.class);
     public static final PropertyKey<OreprocProperty> OREPROC = new PropertyKey<>("oreproc", OreprocProperty.class);
-
+    public static final PropertyKey<TFCProperty> TFC = new PropertyKey<>("tfc", TFCProperty.class);
 }

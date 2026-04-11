@@ -4,7 +4,7 @@ import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.rundas.cgc.common.material.materials.CGCElements.*;
-import static com.rundas.cgc.util.CGCMaterialUtil.isotopeMaterial;
+import static com.rundas.cgc.util.gtceu.CGCMaterialUtil.isotopeMaterial;
 
 public class CGCNuclearMaterials {
 

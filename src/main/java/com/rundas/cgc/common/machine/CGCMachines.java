@@ -6,7 +6,6 @@ import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
 
 import com.rundas.cgc.common.CGCCreativeModeTab;
 import com.rundas.cgc.common.machine.multiblock.FissionReactorMachine;
-import com.rundas.cgc.common.machine.multiblock.ReactionFurnaceMachine;
 import com.rundas.cgc.common.machine.part.BreedingChamberMachine;
 import com.rundas.cgc.common.machine.part.CoolantChamberMachine;
 import com.rundas.cgc.common.machine.part.FissionChamberMachine;
@@ -17,7 +16,7 @@ import net.minecraftforge.fluids.FluidType;
 
 import static com.gregtechceu.gtceu.common.data.machines.GTMachineUtils.*;
 import static com.rundas.cgc.CreatingGregCore.CGC_REGISTRATE;
-import static com.rundas.cgc.util.CGCMachineUtil.*;
+import static com.rundas.cgc.util.gtceu.CGCMachineUtil.*;
 
 public class CGCMachines {
 
@@ -36,8 +35,8 @@ public class CGCMachines {
             CGCRecipeTypes.BATCH_REACTOR_RECIPES,
             defaultTankSizeFunction);
 
-    public static final MachineDefinition[] MIXING_REACTOR = registerCGCSimpleMachines("mixing_reactor",
-            CGCRecipeTypes.MIXING_REACTOR_RECIPES,
+    public static final MachineDefinition[] MIX_REACTOR = registerCGCSimpleMachines("mix_reactor",
+            CGCRecipeTypes.MIX_REACTOR_RECIPES,
             defaultTankSizeFunction);
 
     public static final MachineDefinition[] GAS_BUBBLE_REACTOR = registerCGCSimpleMachines("gas_bubble_reactor",
@@ -50,6 +49,10 @@ public class CGCMachines {
 
     public static final MachineDefinition[] CATALYTIC_REACTOR = registerCGCSimpleMachines("catalytic_reactor",
             CGCRecipeTypes.CATALYTIC_REACTOR_RECIPES,
+            defaultTankSizeFunction);
+
+    public static final MachineDefinition[] FURNACE_REACTOR = registerCGCSimpleMachines("furnace_reactor",
+            CGCRecipeTypes.FURNACE_REACTOR_RECIPES,
             defaultTankSizeFunction);
 
     public static final MachineDefinition[] VACUUM_FILTER = registerCGCSimpleMachines("vacuum_filter",
@@ -72,5 +75,4 @@ public class CGCMachines {
     // Multiblocks
 
     public static final MultiblockMachineDefinition FISSION_REACTOR = FissionReactorMachine.register();
-    public static final MultiblockMachineDefinition REACTION_FURNACE = ReactionFurnaceMachine.register();
 }

@@ -7,10 +7,15 @@ import com.tterrag.registrate.providers.RegistrateLangProvider;
 public class CGCLangHandler extends LangHandler {
 
     public static void init(RegistrateLangProvider provider) {
+        processRecipeLang(provider);
         processRecipeTypeLang(provider);
         processMachineTooltipLang(provider);
         processMaterialTooltipLang(provider);
         // replace(provider, key, value), multiLang(provider, key, ...values)
+    }
+
+    private static void processRecipeLang(RegistrateLangProvider provider) {
+        provider.add("cgc.recipe.energy", "Enthalpy Change: %d J");
     }
 
     private static void processMachineTooltipLang(RegistrateLangProvider provider) {

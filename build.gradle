@@ -231,6 +231,11 @@ dependencies {
 
     // TFC
     modImplementation("maven.modrinth:terrafirmacraft:${terrafirma_version}")
+    modRuntimeOnly("curse.maven:kubejs-tfc-841001:6996502")
+
+    // Tinkers
+    //modRuntimeOnly("curse.maven:tinkers-construct-74072:7449219")
+    //modRuntimeOnly("curse.maven:mantle-74924:7563777")
 }
 
 tasks.named('processResources', ProcessResources).configure {

@@ -5,7 +5,8 @@ import com.gregtechceu.gtceu.api.data.RotationState;
 import com.gregtechceu.gtceu.api.machine.IMachineBlockEntity;
 import com.gregtechceu.gtceu.api.machine.MultiblockMachineDefinition;
 import com.gregtechceu.gtceu.api.machine.feature.IFancyUIMachine;
-import com.gregtechceu.gtceu.api.machine.multiblock.MultiblockControllerMachine;
+import com.gregtechceu.gtceu.api.machine.multiblock.WorkableMultiblockMachine;
+import com.gregtechceu.gtceu.api.machine.trait.RecipeLogic;
 import com.gregtechceu.gtceu.api.pattern.FactoryBlockPattern;
 
 import com.lowdragmc.lowdraglib.syncdata.field.ManagedFieldHolder;
@@ -24,18 +25,25 @@ import static com.gregtechceu.gtceu.common.data.GCYMBlocks.CASING_ATOMIC;
 import static com.rundas.cgc.CreatingGregCore.id;
 import static com.rundas.cgc.common.recipe.CGCRecipeTypes.FISSION_REACTOR_RECIPES;
 
-public class FissionReactorMachine extends MultiblockControllerMachine implements IFancyUIMachine {
+public class FissionReactorMachine extends WorkableMultiblockMachine implements IFancyUIMachine {
 
-    public FissionReactorMachine(IMachineBlockEntity holder) {
-        super(holder);
-    }
+
 
     //////////////////////////////////////
     // ***** LDLib SyncData ******//
     //////////////////////////////////////
 
     public static final ManagedFieldHolder MANAGED_FIELD_HOLDER = new ManagedFieldHolder(FissionReactorMachine.class,
-            MultiblockControllerMachine.MANAGED_FIELD_HOLDER);
+            WorkableMultiblockMachine.MANAGED_FIELD_HOLDER);
+
+    public FissionReactorMachine(IMachineBlockEntity holder) {
+        super(holder);
+    }
+
+    @Override
+    protected @NotNull RecipeLogic createRecipeLogic(Object @NotNull ... args) {
+        return super.createRecipeLogic(args);
+    }
 
     @Override
     public @NotNull ManagedFieldHolder getFieldHolder() {

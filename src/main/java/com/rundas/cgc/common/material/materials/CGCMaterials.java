@@ -1,48 +1,206 @@
 package com.rundas.cgc.common.material.materials;
 
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
-import com.gregtechceu.gtceu.api.data.chemical.material.properties.DustProperty;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.PropertyKey;
 
-import com.rundas.cgc.common.material.CGCPropertyKeys;
-import com.rundas.cgc.common.material.PhysicsProperty;
-import com.rundas.cgc.common.material.SolutionProperty;
+import com.gregtechceu.gtceu.api.data.chemical.material.stack.MaterialStack;
+import com.gregtechceu.gtceu.common.unification.material.MaterialRegistryManager;
+import com.rundas.cgc.common.material.materials.aluminium.CGCAluminiumMaterials;
+import com.rundas.cgc.common.material.materials.aluminium.CGCAluminiumOreMaterials;
+import com.rundas.cgc.common.material.materials.antimony.CGCAntimonyMaterials;
+import com.rundas.cgc.common.material.materials.antimony.CGCAntimonyOreMaterials;
+import com.rundas.cgc.common.material.materials.argon.CGCArgonMaterials;
+import com.rundas.cgc.common.material.materials.arsenic.CGCArsenicMaterials;
+import com.rundas.cgc.common.material.materials.arsenic.CGCArsenicOreMaterials;
+import com.rundas.cgc.common.material.materials.barium.CGCBariumMaterials;
+import com.rundas.cgc.common.material.materials.barium.CGCBariumOreMaterials;
+import com.rundas.cgc.common.material.materials.beryllium.CGCBerylliumMaterials;
+import com.rundas.cgc.common.material.materials.beryllium.CGCBerylliumOreMaterials;
+import com.rundas.cgc.common.material.materials.bismuth.CGCBismuthMaterials;
+import com.rundas.cgc.common.material.materials.boron.CGCBoronMaterials;
+import com.rundas.cgc.common.material.materials.bromine.CGCBromineMaterials;
+import com.rundas.cgc.common.material.materials.cadmium.CGCCadmiumMaterials;
+import com.rundas.cgc.common.material.materials.caesium.CGCCaesiumMaterials;
+import com.rundas.cgc.common.material.materials.calcium.CGCCalciumMaterials;
+import com.rundas.cgc.common.material.materials.calcium.CGCCalciumOreMaterials;
+import com.rundas.cgc.common.material.materials.carbon.CGCCarbonMaterials;
+import com.rundas.cgc.common.material.materials.cerium.CGCCeriumMaterials;
+import com.rundas.cgc.common.material.materials.cerium.CGCCeriumOreMaterials;
+import com.rundas.cgc.common.material.materials.chlorine.CGCChlorineMaterials;
+import com.rundas.cgc.common.material.materials.chromium.CGCChromiumMaterials;
+import com.rundas.cgc.common.material.materials.chromium.CGCChromiumOreMaterials;
+import com.rundas.cgc.common.material.materials.cobalt.CGCCobaltMaterials;
+import com.rundas.cgc.common.material.materials.cobalt.CGCCobaltOreMaterials;
+import com.rundas.cgc.common.material.materials.copper.CGCCopperMaterials;
+import com.rundas.cgc.common.material.materials.copper.CGCCopperOreMaterials;
+import com.rundas.cgc.common.material.materials.fluorine.CGCFluorineMaterials;
+import com.rundas.cgc.common.material.materials.gallium.CGCGalliumMaterials;
+import com.rundas.cgc.common.material.materials.gold.CGCGoldMaterials;
+import com.rundas.cgc.common.material.materials.helium.CGCHeliumMaterials;
+import com.rundas.cgc.common.material.materials.hydrogen.CGCHydrogenMaterials;
+import com.rundas.cgc.common.material.materials.indium.CGCIndiumMaterials;
+import com.rundas.cgc.common.material.materials.iron.CGCIronMaterials;
+import com.rundas.cgc.common.material.materials.iron.CGCIronOreMaterials;
+import com.rundas.cgc.common.material.materials.lead.CGCLeadMaterials;
+import com.rundas.cgc.common.material.materials.lead.CGCLeadOreMaterials;
+import com.rundas.cgc.common.material.materials.lithium.CGCLithiumMaterials;
+import com.rundas.cgc.common.material.materials.lithium.CGCLithiumOreMaterials;
+import com.rundas.cgc.common.material.materials.magnesium.CGCMagnesiumMaterials;
+import com.rundas.cgc.common.material.materials.magnesium.CGCMagnesiumOreMaterials;
+import com.rundas.cgc.common.material.materials.manganese.CGCManganeseMaterials;
+import com.rundas.cgc.common.material.materials.manganese.CGCManganeseOreMaterials;
+import com.rundas.cgc.common.material.materials.mercury.CGCMercuryMaterials;
+import com.rundas.cgc.common.material.materials.mercury.CGCMercuryOreMaterials;
+import com.rundas.cgc.common.material.materials.molybdenum.CGCMolybdenumMaterials;
+import com.rundas.cgc.common.material.materials.molybdenum.CGCMolybdenumOreMaterials;
+import com.rundas.cgc.common.material.materials.nickel.CGCNickelMaterials;
+import com.rundas.cgc.common.material.materials.nickel.CGCNickelOreMaterials;
+import com.rundas.cgc.common.material.materials.niobium.CGCNiobiumMaterials;
+import com.rundas.cgc.common.material.materials.niobium.CGCNiobiumOreMaterials;
+import com.rundas.cgc.common.material.materials.nitrogen.CGCNitrogenMaterials;
+import com.rundas.cgc.common.material.materials.oxygen.CGCOxygenMaterials;
+import com.rundas.cgc.common.material.materials.palladium.CGCPalladiumMaterials;
+import com.rundas.cgc.common.material.materials.palladium.CGCPalladiumOreMaterials;
+import com.rundas.cgc.common.material.materials.platinum.CGCPlatinumMaterials;
+import com.rundas.cgc.common.material.materials.platinum.CGCPlatinumOreMaterials;
+import com.rundas.cgc.common.material.materials.potassium.CGCPotassiumMaterials;
+import com.rundas.cgc.common.material.materials.potassium.CGCPotassiumOreMaterials;
+import com.rundas.cgc.common.material.materials.rhodium.CGCRhodiumOreMaterials;
+import com.rundas.cgc.common.material.materials.scandium.CGCScandiumOreMaterials;
+import com.rundas.cgc.common.material.materials.selenium.CGCSeleniumMaterials;
+import com.rundas.cgc.common.material.materials.silicon.CGCSiliconMaterials;
+import com.rundas.cgc.common.material.materials.silicon.CGCSiliconOreMaterials;
+import com.rundas.cgc.common.material.materials.silver.CGCSilverOreMaterials;
+import com.rundas.cgc.common.material.materials.sodium.CGCSodiumMaterials;
+import com.rundas.cgc.common.material.materials.sodium.CGCSodiumOreMaterials;
+import com.rundas.cgc.common.material.materials.sulfur.CGCSulfurMaterials;
+import com.rundas.cgc.common.material.materials.tantalum.CGCTantalumMaterials;
+import com.rundas.cgc.common.material.materials.tantalum.CGCTantalumOreMaterials;
+import com.rundas.cgc.common.material.materials.thallium.CGCThalliumMaterials;
+import com.rundas.cgc.common.material.materials.thorium.CGCThoriumOreMaterials;
+import com.rundas.cgc.common.material.materials.tin.CGCTinMaterials;
+import com.rundas.cgc.common.material.materials.tin.CGCTinOreMaterials;
+import com.rundas.cgc.common.material.materials.titanium.CGCTitaniumMaterials;
+import com.rundas.cgc.common.material.materials.titanium.CGCTitaniumOreMaterials;
+import com.rundas.cgc.common.material.materials.tungsten.CGCTungstenMaterials;
+import com.rundas.cgc.common.material.materials.tungsten.CGCTungstenOreMaterials;
+import com.rundas.cgc.common.material.materials.uranium.CGCUraniumMaterials;
+import com.rundas.cgc.common.material.materials.uranium.CGCUraniumOreMaterials;
+import com.rundas.cgc.common.material.materials.vanadium.CGCVanadiumMaterials;
+import com.rundas.cgc.common.material.materials.zinc.CGCZincMaterials;
+import com.rundas.cgc.common.material.materials.zinc.CGCZincOreMaterials;
 import net.minecraft.util.Tuple;
 
 import com.rundas.cgc.integration.forestry.bee.CGCBeeSpecies;
 import com.rundas.cgc.integration.forestry.bee.item.CGCHoneyComb;
-import com.rundas.cgc.util.CGCMaterialUtil;
 import forestry.api.apiculture.ForestryBeeSpecies;
 import org.apache.commons.lang3.tuple.Triple;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 import java.util.List;
 
+import static com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlags.*;
 import static com.gregtechceu.gtceu.common.data.GTMaterials.*;
 import static com.rundas.cgc.CreatingGregCore.id;
 import static com.rundas.cgc.common.material.materials.CGCNuclearMaterials.*;
-import static com.rundas.cgc.common.material.CGCPropertyKeys.PHYSICS;
 import static com.rundas.cgc.integration.forestry.bee.CGCBeeTaxa.*;
 import static com.rundas.cgc.util.CGCForestryUtil.combStack;
 import static com.rundas.cgc.util.CGCForestryUtil.registerBeeProperty;
-import static com.rundas.cgc.util.CGCMaterialCreationUtil.*;
-import static com.rundas.cgc.util.CGCMaterialUtil.getMaxTier;
-import static com.rundas.cgc.util.CGCNuclearUtil.registerNuclearProperty;
+import static com.rundas.cgc.util.gtceu.CGCMaterialUtil.*;
+import static com.rundas.cgc.util.gtceu.CGCNuclearUtil.registerNuclearProperty;
 
 public class CGCMaterials {
 
     public static Material FreeProtonGas;
     public static Material FreeElectronGas;
     public static Material FreeNeutronGas;
-    public static Material IronIIIOxide;
-    public static Material Berndtite;
-    public static Material TinIVNitrate;
-    public static Material TinIVNitrateHexahydrate;
-    public static Material TinIVNitrateHexahydrateWaterSolution;
+
+    private static void preModify() {
+        CGCElementMaterials.preModify();
+        CGCAluminiumMaterials.preModify();
+        CGCAntimonyMaterials.preModify();
+        CGCArgonMaterials.preModify();
+        CGCArsenicMaterials.preModify();
+        CGCBariumMaterials.preModify();
+        CGCBerylliumMaterials.preModify();
+        CGCBismuthMaterials.preModify();
+        CGCBoronMaterials.preModify();
+        CGCBromineMaterials.preModify();
+        CGCCaesiumMaterials.preModify();
+        CGCCalciumMaterials.preModify();
+        CGCCarbonMaterials.preModify();
+        CGCCadmiumMaterials.preModify();
+        CGCCeriumMaterials.preModify();
+        CGCChlorineMaterials.preModify();
+        CGCChromiumMaterials.preModify();
+        CGCCobaltMaterials.preModify();
+        CGCCopperMaterials.preModify();
+        CGCFluorineMaterials.preModify();
+        CGCGalliumMaterials.preModify();
+        CGCGoldMaterials.preModify();
+        CGCHydrogenMaterials.preModify();
+        CGCHeliumMaterials.preModify();
+        CGCIndiumMaterials.preModify();
+        CGCIronMaterials.preModify();
+        CGCLeadMaterials.preModify();
+        CGCLithiumMaterials.preModify();
+        CGCMagnesiumMaterials.preModify();
+        CGCManganeseMaterials.preModify();
+        CGCMercuryMaterials.preModify();
+        CGCMolybdenumMaterials.preModify();
+        CGCNickelMaterials.preModify();
+        CGCNiobiumMaterials.preModify();
+        CGCNitrogenMaterials.preModify();
+        CGCOxygenMaterials.preModify();
+        CGCPalladiumMaterials.preModify();
+        CGCPlatinumMaterials.preModify();
+        CGCPotassiumMaterials.preModify();
+        CGCSodiumMaterials.preModify();
+        CGCSeleniumMaterials.preModify();
+        CGCSiliconMaterials.preModify();
+        CGCSulfurMaterials.preModify();
+        CGCTantalumMaterials.preModify();
+        CGCThalliumMaterials.preModify();
+        CGCTinMaterials.preModify();
+        CGCTitaniumMaterials.preModify();
+        CGCTungstenMaterials.preModify();
+        CGCUraniumMaterials.preModify();
+        CGCVanadiumMaterials.preModify();
+        CGCZincMaterials.preModify();
+        CGCAluminiumOreMaterials.preModify();
+        CGCAntimonyOreMaterials.preModify();
+        CGCArsenicOreMaterials.preModify();
+        CGCBariumOreMaterials.preModify();
+        CGCBerylliumOreMaterials.preModify();
+        CGCCalciumOreMaterials.preModify();
+        CGCCeriumOreMaterials.preModify();
+        CGCChromiumOreMaterials.preModify();
+        CGCCobaltOreMaterials.preModify();
+        CGCCopperOreMaterials.preModify();
+        CGCIronOreMaterials.preModify();
+        CGCLeadOreMaterials.preModify();
+        CGCLithiumOreMaterials.preModify();
+        CGCMagnesiumOreMaterials.preModify();
+        CGCManganeseOreMaterials.preModify();
+        CGCMercuryOreMaterials.preModify();
+        CGCMolybdenumOreMaterials.preModify();
+        CGCNickelOreMaterials.preModify();
+        CGCNiobiumOreMaterials.preModify();
+        CGCPlatinumOreMaterials.preModify();
+        CGCPotassiumOreMaterials.preModify();
+        CGCSiliconOreMaterials.preModify();
+        CGCSilverOreMaterials.preModify();
+        CGCSodiumOreMaterials.preModify();
+        CGCTantalumOreMaterials.preModify();
+        CGCTinOreMaterials.preModify();
+        CGCTitaniumOreMaterials.preModify();
+        CGCTungstenOreMaterials.preModify();
+        CGCUraniumOreMaterials.preModify();
+        CGCZincOreMaterials.preModify();
+    }
 
     public static void init() {
-        registerPhysicsProperties();
+
         FreeProtonGas = new Material.Builder(id("free_proton_gas"))
                 .gas().formula("p+")
                 .color(0xAC1B1B).buildAndRegister();
@@ -55,106 +213,73 @@ public class CGCMaterials {
                 .gas().formula("n")
                 .color(0x3C60E8).buildAndRegister();
 
-        IronIIIOxide = cgcDustAliasMaterial("iron_iii_oxide", Hematite, 1, -824.2);
-        Berndtite = cgcOreMaterial("berndtite", null, null, Arrays.asList(new Tuple<>(Tin, 1), new Tuple<>(Sulfur, 4)), 1, -131, null);
-        TinIVNitrate = cgcDustMaterial("tin_iv_nitrate", null, null, Arrays.asList(new Tuple<>(Tin, 1), new Tuple<>(Nitrogen, 4), new Tuple<>(Oxygen, 12)), null, 2, -4400.0, "Sn(NO3)4");
-        TinIVNitrateHexahydrate = cgcDustMaterial("tin_iv_nitrate_hexahydrate", null, null, Arrays.asList(new Tuple<>(TinIVNitrate, 1), new Tuple<>(Water, 6)), null, 2, null, null);
-        TinIVNitrateHexahydrateWaterSolution = cgcFluidMaterial("tin_iv_nitrate_hexahydrate_water_solution", null, null, Arrays.asList(new Tuple<>(TinIVNitrateHexahydrate, 1), new Tuple<>(Water, 1)), 2, null, null);
-        //3 SnS4 + 32 (HNO3)(H2O) = 3 ((Sn(NO3)4)(H2O)6)(H2O) + 12 SO2 + 20 NO + 27 H2O
-        registerOreprocMaterials(Berndtite, Arrays.asList(new Tuple<>(TinIVNitrateHexahydrateWaterSolution, 3)), null);
+        preModify();
+
+        CGCAluminiumMaterials.init();
+        CGCIronMaterials.init();
+        CGCManganeseMaterials.init();
+        CGCOxygenMaterials.init();
+        CGCSeleniumMaterials.init();
+        CGCSiliconMaterials.init();
+        CGCThalliumMaterials.init();
+        CGCTinMaterials.init();
+        CGCAntimonyOreMaterials.init();
+        CGCCopperOreMaterials.init();
+        CGCIronOreMaterials.init();
+        CGCLeadOreMaterials.init();
+        CGCLithiumOreMaterials.init();
+        CGCMagnesiumOreMaterials.init();
+        CGCNickelOreMaterials.init();
+        CGCNiobiumOreMaterials.init();
+        CGCPalladiumOreMaterials.init();
+        CGCPotassiumMaterials.init();
+        CGCRhodiumOreMaterials.init();
+        CGCSilverOreMaterials.init();
+        CGCScandiumOreMaterials.init();
+        CGCThoriumOreMaterials.init();
+        CGCTinOreMaterials.init();
+        CGCTitaniumOreMaterials.init();
+        CGCTungstenOreMaterials.init();
         CGCNuclearMaterials.init();
     }
 
     public static void modify() {
-        registerMissingProperties();
+        for (Material material : MaterialRegistryManager.getInstance().getRegisteredMaterials()) {
+            if (material.hasAnyOfFlags(DECOMPOSITION_BY_CENTRIFUGING, DECOMPOSITION_BY_ELECTROLYZING) | !material.hasFlag(DISABLE_DECOMPOSITION)) {
+                material.addFlags(DISABLE_DECOMPOSITION);
+            }
+            if (material.hasProperty(PropertyKey.ORE)) {
+                if (!material.hasFlag(NO_SMELTING)) {
+                    material.addFlags(NO_SMELTING);
+                }
+                if (!material.hasFlag(NO_ORE_SMELTING)) {
+                    material.addFlags(NO_ORE_SMELTING);
+                }
+            }
+        }
+        CGCElementMaterials.modify();
+        CGCAluminiumOreMaterials.modify();
+        CGCChlorineMaterials.modify();
+        CGCCopperOreMaterials.modify();
+        CGCFluorineMaterials.modify();
+        CGCHydrogenMaterials.modify();
+        CGCNickelOreMaterials.modify();
+        CGCNiobiumOreMaterials.modify();
+        CGCNitrogenMaterials.modify();
+        CGCPlatinumOreMaterials.modify();
+        CGCOxygenMaterials.modify();
+        CGCSodiumOreMaterials.modify();
+        modifyBaseGTMaterialsLate();
         // registerBeeProperties();
         // registerNuclearProperties();
     }
 
-    private static void registerMissingProperties() {
-        registerDustProperties(
-                Arrays.asList(Scandium, Germanium, Selenium, Rubidium, Strontium, Zirconium, Technetium, Tellurium,
-                        Praseodymium, Promethium, Gadolinium, Terbium, Dysprosium, Holmium, Erbium, Thulium, Ytterbium,
-                        Hafnium, Rhenium, Thallium, Polonium,
-                        Astatine, Francium, Radium, Actinium, Protactinium, Neptunium, Curium, Berkelium, Californium,
-                        Einsteinium, Fermium, Mendelevium,
-                        Nobelium, Lawrencium, Rutherfordium, Dubnium, Seaborgium, Bohrium, Hassium, Meitnerium,
-                        Roentgenium, Copernicium, Nihonium,
-                        Flerovium, Moscovium, Livermorium, Tennessine, Oganesson));
-    }
+    private static void modifyBaseGTMaterialsLate() {
 
-    private static void registerPhysicsProperties() {
-        /*for (Material material : MaterialRegistryManager.getInstance().getRegisteredMaterials()) {
-            if (material.isElement()) {
-                if (material.hasFluid() && material.hasProperty(PropertyKey.DUST)) {
-                    registerPhysicsPropertyMetal(material, 1, 0);
-                } else if (material.hasFluid()) {
-                    registerPhysicsPropertyFluidOrGas(material, 1, 0);
-                } else {
-                    registerPhysicsPropertyNonmetal(material, 1, 0);
-                }
-            }
-        }*/
-        registerPhysicsPropertyFluidOrGas(Steam, 1, -241.83);
-        registerPhysicsPropertyFluidOrGas(SulfurDioxide, 1, -296.81);
-        registerPhysicsPropertyFluidOrGas(SulfurTrioxide, 1, -395.7);
-        registerPhysicsPropertyFluidOrGas(Water, 1, -285.83);
-        /*registerPhysicsPropertyCompound(BatteryAlloy);
-        registerPhysicsPropertyCompound(Brass);
-        registerPhysicsPropertyCompound(Bronze);
-        registerPhysicsPropertyCompound(Cupronickel);
-        registerPhysicsPropertyCompound(Electrum);
-        registerPhysicsPropertyCompound(Invar);
-        registerPhysicsPropertyCompound(Kanthal);
-        registerPhysicsPropertyCompound(Magnalium);
-        registerPhysicsPropertyCompound(Nichrome);
-        registerPhysicsPropertyCompound(NiobiumTitanium);
-        registerPhysicsPropertyCompound(SterlingSilver);
-        registerPhysicsPropertyCompound(RoseGold);
-        registerPhysicsPropertyCompound(BlackBronze);
-        registerPhysicsPropertyCompound(BismuthBronze);
-        registerPhysicsPropertyCompound(RTMAlloy);
-        registerPhysicsPropertyCompound(SolderingAlloy);
-        registerPhysicsPropertyCompound(StainlessSteel);
-        registerPhysicsPropertyCompound(Steel);
-        registerPhysicsPropertyCompound(TinAlloy);
-        registerPhysicsPropertyCompound(AnnealedCopper);
-        registerPhysicsPropertyCompound(Ash);
-        registerPhysicsPropertyCompound(BlueTopaz);
-        registerPhysicsPropertyCompound(Bone);*/
-    }
 
-    private static void registerPhysicsPropertyCompound(Material material, double formationEnthalpy) {
-        registerPhysicsPropertyMetal(material, getMaxTier(material.getMaterialComponents()), formationEnthalpy);
-    }
 
-    public static void registerPhysicsPropertyFluidOrGas(Material material, int tier, double formationEnthalpy) {
-        registerPhysicsProperty(material, tier, formationEnthalpy, 1000);
-    }
 
-    public static void registerPhysicsPropertyMetal(Material material, int tier, double formationEnthalpy) {
-        registerPhysicsProperty(material, tier, formationEnthalpy, 144);
-    }
-
-    public static void registerPhysicsPropertyNonmetal(Material material, int tier, double formationEnthalpy) {
-        registerPhysicsProperty(material, tier, formationEnthalpy, 0);
-    }
-
-    public static void registerPhysicsProperty(Material material, int tier, double formationEnthalpy, int liquidMole) {
-        material.setProperty(PHYSICS,
-                new PhysicsProperty(tier, formationEnthalpy, CGCMaterialUtil.getMolarAmount(material), liquidMole));
-    }
-
-    public static void registerSolutionProperty(@NotNull Material material, @NotNull Material solvent, @NotNull Material solution, @NotNull Material crystallizedSolutions, List<@NotNull Material> dilutedSolutions) {
-        material.setProperty(CGCPropertyKeys.SOLUTION, new SolutionProperty(solvent, solution, crystallizedSolutions, dilutedSolutions));
-    }
-
-    private static void registerDustProperties(List<Material> materials) {
-        materials.forEach(CGCMaterials::registerDustProperty);
-    }
-
-    private static void registerDustProperty(Material material) {
-        material.setProperty(PropertyKey.DUST, new DustProperty());
+        changeComponentsAndFormula(Iodine, new MaterialStack(Iodine, 2));
     }
 
     private static void registerNuclearProperties() {

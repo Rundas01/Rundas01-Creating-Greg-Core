@@ -13,22 +13,39 @@ import java.util.List;
 public class CGCKJSRecipeUtils {
 
     private static MaterialStack getMaterialStackFromItemString(String s) {
+        String[] parts;
+        String materialPart, amountPart;
+        Material material;
+        long amount;
         if (s.contains(" ")) {
-            return new MaterialStack(GTMaterials.get(s.split(" ")[1].split(":")[1]),
-                    Long.getLong(StringUtils.removeEnd(s.split(" ")[0], "x")));
+            parts = s.split(" ");
+            amountPart = parts[0];
+            materialPart = parts[1];
+            material = GTMaterials.get(StringUtils.removeEnd(materialPart.split(":")[1], "_" + materialPart.split("_")[materialPart.split("_").length - 1]));
+            amount = Long.parseLong(StringUtils.removeEnd(amountPart, "x"));
+        } else {
+            materialPart = StringUtils.removeEnd(s.split(":")[1], "_" + s.split("_")[s.split("_").length - 1]);
+            material = GTMaterials.get(materialPart);
+            amount = 1;
         }
-        return new MaterialStack(GTMaterials.get(s.split(":")[1]), 1);
+        return new MaterialStack(material, amount);
     }
 
     private static MaterialStack getMaterialStackFromFluidString(String s) {
-        Material material = GTMaterials.get(s.split(" ")[0].split(":")[1]);
-        long amount = Long.getLong(s.split(" ")[1]);
+        String[] parts = s.split(" ");
+        String materialPart = parts[0];
+        String amountPart = parts[1];
+
+        Material material = GTMaterials.get(materialPart.split(":")[1]);
+
+        long amount = Long.parseLong(amountPart);
+
         return new MaterialStack(material, amount);
     }
 
     public static double calculateDuration(List<String> itemInputs, List<String> fluidInputs,
                                             List<String> itemOutputs,
-                                            List<String> fluidOutputs) {
+                                            List<String> fluidOutputs, int volts) {
         List<MaterialStack> materialItemInputs = itemInputs.stream()
                 .map(CGCKJSRecipeUtils::getMaterialStackFromItemString).toList();
         List<MaterialStack> materialFluidInputs = fluidInputs.stream()
@@ -58,23 +75,33 @@ public class CGCKJSRecipeUtils {
             enthalpy -= property.formationEnthalpy() * stack.amount() / property.liquidMole();
         }
 
-        return enthalpy > 0 ? 2 * enthalpy : -enthalpy;
+        return 20 * enthalpy / volts;
     }
 
     public static int getMaxTier(List<String> items, List<String> fluids) {
         int max = 0;
         PhysicsProperty property;
+
         List<MaterialStack> itemMaterials = items.stream().map(CGCKJSRecipeUtils::getMaterialStackFromItemString)
                 .toList();
         List<MaterialStack> fluidMaterials = fluids.stream()
                 .map(CGCKJSRecipeUtils::getMaterialStackFromFluidString).toList();
+
         for (MaterialStack stack : itemMaterials) {
-            property = stack.material().getProperty(CGCPropertyKeys.PHYSICS);
-            max = Math.max(max, property.tier());
+            if (stack.material().hasProperty(CGCPropertyKeys.PHYSICS)) {
+                property = stack.material().getProperty(CGCPropertyKeys.PHYSICS);
+                max = Math.max(max, property.tier());
+            } else {
+                throw new RuntimeException(stack.material().getName() + " has no PP!");
+            }
         }
         for (MaterialStack stack : fluidMaterials) {
-            property = stack.material().getProperty(CGCPropertyKeys.PHYSICS);
-            max = Math.max(max, property.tier());
+            if (stack.material().hasProperty(CGCPropertyKeys.PHYSICS)) {
+                property = stack.material().getProperty(CGCPropertyKeys.PHYSICS);
+                max = Math.max(max, property.tier());
+            } else {
+                throw new RuntimeException(stack.material().getName() + " has no PP!");
+            }
         }
 
         return max;
