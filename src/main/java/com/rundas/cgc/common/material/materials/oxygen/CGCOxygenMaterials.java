@@ -15,7 +15,7 @@ public class CGCOxygenMaterials {
     public static Material Ozone;
 
     public static void preModify() {
-        registerPhysicsPropertyElement(Oxygen, 1, 1000, false);
+
     }
 
     public static void init() {

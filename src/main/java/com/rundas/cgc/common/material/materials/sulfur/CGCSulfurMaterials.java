@@ -6,7 +6,6 @@ import static com.rundas.cgc.util.gtceu.CGCMaterialUtil.registerPhysicsPropertyF
 
 public class CGCSulfurMaterials {
     public static void preModify() {
-        registerPhysicsPropertyElement(Sulfur, 1, 144, false);
         registerPhysicsPropertyFluidOrGas(SulfurDioxide, 1, -296.81, false);
         registerPhysicsPropertyFluidOrGas(SulfurTrioxide, 1, -395.7, false);
     }

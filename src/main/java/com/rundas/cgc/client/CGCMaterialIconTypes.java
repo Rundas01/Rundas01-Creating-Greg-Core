@@ -6,6 +6,8 @@ public class CGCMaterialIconTypes {
 
     public static final MaterialIconType nuclearFuel = new MaterialIconType("nuclearFuel");
     public static final MaterialIconType catalystBed = new MaterialIconType("catalystBed");
+    public static final MaterialIconType poorRawOre = new MaterialIconType("poorRawOre");
+    public static final MaterialIconType richRawOre = new MaterialIconType("richRawOre");
 
     public static void init() {}
 }

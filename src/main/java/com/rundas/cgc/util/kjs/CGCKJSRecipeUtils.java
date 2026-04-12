@@ -75,7 +75,7 @@ public class CGCKJSRecipeUtils {
             enthalpy -= property.formationEnthalpy() * stack.amount() / property.liquidMole();
         }
 
-        return 20 * enthalpy / volts;
+        return 20000 * enthalpy / volts;
     }
 
     public static int getMaxTier(List<String> items, List<String> fluids) {

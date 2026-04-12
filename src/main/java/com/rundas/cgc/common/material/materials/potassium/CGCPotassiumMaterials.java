@@ -15,11 +15,8 @@ public class CGCPotassiumMaterials {
     public static Material PotassiumPermanganate;
 
     public static void preModify() {
-        registerPhysicsPropertyElement(Potassium, 2, true);
         registerPhysicsPropertyCompound(PotassiumSulfate, -1437.7);
     }
 
-    public static void init() {
-        PotassiumPermanganate = cgcDustMaterial("potassium_permanganate", null, null, Arrays.asList(new MaterialStack(Potassium, 1), new MaterialStack(Manganese, 1), new MaterialStack(Oxygen, 4)), 1, 4, -813.4);
-    }
+    public static void init() {}
 }

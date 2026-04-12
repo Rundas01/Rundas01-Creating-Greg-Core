@@ -14,12 +14,12 @@ public class CGCManganeseMaterials {
 
     public static Material PotassiumPermanganate, PermanganicAcid;
 
+    public static void preModify() {
+
+    }
+
     public static void init() {
         PotassiumPermanganate = cgcDustMaterial("potassium_permanganate", 0x320354, null, Arrays.asList(new MaterialStack(Potassium, 1), new MaterialStack(Manganese, 1), new MaterialStack(Oxygen, 4)), 1, 3, -813.4);
         PermanganicAcid = cgcFluidMaterial("permanganic_acid", null, null, Arrays.asList(new MaterialStack(Hydrogen, 1), new MaterialStack(Manganese, 1), new MaterialStack(Oxygen, 4)), 3, -600.0);
-    }
-
-    public static void preModify() {
-        registerPhysicsPropertyElement(Manganese, 3, true);
     }
 }

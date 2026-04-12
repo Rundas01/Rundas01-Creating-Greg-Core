@@ -1,6 +1,8 @@
 package com.rundas.cgc.common.material;
 
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
+import com.gregtechceu.gtceu.api.data.chemical.material.info.MaterialFlag;
+import com.gregtechceu.gtceu.api.data.chemical.material.properties.PropertyKey;
 import com.gregtechceu.gtceu.api.data.tag.TagPrefix;
 
 import com.rundas.cgc.client.CGCMaterialIconTypes;
@@ -9,13 +11,26 @@ import java.util.function.Predicate;
 
 public class CGCTagPrefixes {
 
-    public static TagPrefix nuclearFuel;
-    public static TagPrefix depletedNuclearFuel;
+    public static TagPrefix nuclearFuel, depletedNuclearFuel;
+    public static TagPrefix poorRawOre, richRawOre;
     public static TagPrefix catalystBed;
 
     public static final Predicate<Material> isValidFuel = m -> m.hasProperty(CGCPropertyKeys.NUCLEAR) &&
             m.getProperty(CGCPropertyKeys.NUCLEAR).isFuel();
-    public static final Predicate<Material> isCatalyst = m -> m.hasFlag(CGCMaterialFlags.IS_CATALYST);
+    public static final Predicate<Material> isCatalyst = anyFlagPredicate(CGCMaterialFlags.IS_CATALYST);
+    public static final Predicate<Material> isOre = propertyPredicate(PropertyKey.ORE);
+
+    private static Predicate<Material> anyFlagPredicate(MaterialFlag... flags) {
+        return m -> m.hasAnyOfFlags(flags);
+    }
+
+    private static Predicate<Material> allFlagPredicate(MaterialFlag... flags) {
+        return m -> m.hasFlags(flags);
+    }
+
+    private static Predicate<Material> propertyPredicate(PropertyKey<?> property) {
+        return m -> m.hasProperty(property);
+    }
 
     public static void init() {
         nuclearFuel = new TagPrefix("nuclearFuel")
@@ -44,5 +59,23 @@ public class CGCTagPrefixes {
                 .unificationEnabled(true)
                 .generateItem(true)
                 .generationCondition(isCatalyst);
+
+        poorRawOre = new TagPrefix("poorRawOre")
+                .idPattern("poor_%s_raw_ore")
+                .defaultTagPath("poor_raw_ores/%s")
+                .defaultTagPath("poor_raw_ores")
+                .materialIconType(CGCMaterialIconTypes.poorRawOre)
+                .unificationEnabled(true)
+                .generateItem(true)
+                .generationCondition(isOre);
+
+        richRawOre = new TagPrefix("richRawOre")
+                .idPattern("rich_%s_raw_ore")
+                .defaultTagPath("rich_raw_ores/%s")
+                .defaultTagPath("rich_raw_ores")
+                .materialIconType(CGCMaterialIconTypes.richRawOre)
+                .unificationEnabled(true)
+                .generateItem(true)
+                .generationCondition(isOre);
     }
 }

@@ -48,10 +48,13 @@ public class CGCElementMaterials {
         registerPhysicsPropertyElement(Iron, 1, true);
         registerPhysicsPropertyElement(Lead, 2, true);
         registerPhysicsPropertyElement(Magnesium, 3, true);
+        registerPhysicsPropertyElement(Manganese, 3, true);
         registerPhysicsPropertyElement(Niobium, 4, true);
         registerPhysicsPropertyElement(Oxygen, 1, false);
+        registerPhysicsPropertyElement(Potassium, 2, true);
         registerPhysicsPropertyElement(Rhodium, 5, true);
         registerPhysicsPropertyElement(Scandium, 4, true);
+        registerPhysicsPropertyElement(Sulfur, 1, 144, false);
         registerPhysicsPropertyElement(Silicon, 2, true);
         registerPhysicsPropertyElement(Silver, 3, true);
         registerPhysicsPropertyElement(Thorium, 5, true);
