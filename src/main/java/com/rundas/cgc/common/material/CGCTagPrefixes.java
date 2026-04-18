@@ -60,8 +60,8 @@ public class CGCTagPrefixes {
                 .generateItem(true)
                 .generationCondition(isCatalyst);
 
-        poorRawOre = new TagPrefix("poorRawOre")
-                .idPattern("poor_%s_raw_ore")
+        poorRawOre = new TagPrefix("poorRaw")
+                .idPattern("poor_raw_%s")
                 .defaultTagPath("poor_raw_ores/%s")
                 .defaultTagPath("poor_raw_ores")
                 .materialIconType(CGCMaterialIconTypes.poorRawOre)
@@ -69,8 +69,8 @@ public class CGCTagPrefixes {
                 .generateItem(true)
                 .generationCondition(isOre);
 
-        richRawOre = new TagPrefix("richRawOre")
-                .idPattern("rich_%s_raw_ore")
+        richRawOre = new TagPrefix("richRaw")
+                .idPattern("rich_raw_%s")
                 .defaultTagPath("rich_raw_ores/%s")
                 .defaultTagPath("rich_raw_ores")
                 .materialIconType(CGCMaterialIconTypes.richRawOre)

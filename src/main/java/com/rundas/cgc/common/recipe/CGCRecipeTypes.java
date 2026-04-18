@@ -7,7 +7,6 @@ import com.gregtechceu.gtceu.api.recipe.GTRecipeType;
 import com.gregtechceu.gtceu.api.registry.GTRegistries;
 import com.gregtechceu.gtceu.common.data.GTSoundEntries;
 
-import com.gregtechceu.gtceu.data.recipe.builder.GTRecipeBuilder;
 import com.lowdragmc.lowdraglib.gui.texture.ProgressTexture;
 
 import com.lowdragmc.lowdraglib.utils.LocalizationUtils;
@@ -19,7 +18,10 @@ import static com.rundas.cgc.CreatingGregCore.id;
 
 public class CGCRecipeTypes {
 
-    public static void init() {}
+    public static void init() {
+        COMBUSTION_GENERATOR_FUELS.setMaxIOSize(0, 0, 2, 3);
+        GAS_TURBINE_FUELS.setMaxIOSize(0, 0, 2, 3);
+    }
 
     public static GTRecipeType registerMachine(String name, int mi, int mo, int mfi, int mfo, RecipeType<?>... proxyRecipes) {
         GTRecipeType type = register(name, ELECTRIC, mi, mo, mfi, mfo, proxyRecipes);

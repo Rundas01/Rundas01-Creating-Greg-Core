@@ -1,14 +1,20 @@
 package com.rundas.cgc.util.kjs;
 
+import com.gregtechceu.gtceu.api.GTValues;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.stack.MaterialStack;
 import com.gregtechceu.gtceu.common.data.GTMaterials;
 
 import com.rundas.cgc.common.material.CGCPropertyKeys;
 import com.rundas.cgc.common.material.PhysicsProperty;
+import dev.architectury.fluid.FluidStack;
+import net.minecraft.world.item.ItemStack;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
+
+import static com.rundas.cgc.common.material.CGCPropertyKeys.PHYSICS;
+import static com.rundas.cgc.util.gtceu.CGCMaterialUtil.*;
 
 public class CGCKJSRecipeUtils {
 
@@ -43,67 +49,70 @@ public class CGCKJSRecipeUtils {
         return new MaterialStack(material, amount);
     }
 
-    public static double calculateDuration(List<String> itemInputs, List<String> fluidInputs,
-                                            List<String> itemOutputs,
-                                            List<String> fluidOutputs, int volts) {
-        List<MaterialStack> materialItemInputs = itemInputs.stream()
-                .map(CGCKJSRecipeUtils::getMaterialStackFromItemString).toList();
-        List<MaterialStack> materialFluidInputs = fluidInputs.stream()
-                .map(CGCKJSRecipeUtils::getMaterialStackFromFluidString).toList();
-        List<MaterialStack> materialItemOutputs = itemOutputs.stream()
-                .map(CGCKJSRecipeUtils::getMaterialStackFromItemString).toList();
-        List<MaterialStack> materialFluidOutputs = fluidOutputs.stream()
-                .map(CGCKJSRecipeUtils::getMaterialStackFromFluidString).toList();
-
-        double enthalpy = 0;
+    public static int getMaxTier(List<ItemStack> items, List<FluidStack> fluids) {
+        int tier = GTValues.LV;
         PhysicsProperty property;
-
-        for (MaterialStack stack : materialItemOutputs) {
-            property = stack.material().getProperty(CGCPropertyKeys.PHYSICS);
-            enthalpy += property.formationEnthalpy() * stack.amount() / property.solidMole();
+        if (!items.isEmpty()) {
+            for (ItemStack stack : items) {
+                property = getMaterialFromItemStack(stack).getProperty(PHYSICS);
+                tier = Math.max(property.tier(), tier);
+            }
         }
-        for (MaterialStack stack : materialItemInputs) {
-            property = stack.material().getProperty(CGCPropertyKeys.PHYSICS);
-            enthalpy -= property.formationEnthalpy() * stack.amount() / property.solidMole();
+        if (!fluids.isEmpty()) {
+            for (FluidStack stack : fluids) {
+                property = getMaterialFromFluidStack(stack).getProperty(PHYSICS);
+                tier = Math.max(property.tier(), tier);
+            }
         }
-        for (MaterialStack stack : materialFluidOutputs) {
-            property = stack.material().getProperty(CGCPropertyKeys.PHYSICS);
-            enthalpy += property.formationEnthalpy() * stack.amount() / property.liquidMole();
-        }
-        for (MaterialStack stack : materialFluidInputs) {
-            property = stack.material().getProperty(CGCPropertyKeys.PHYSICS);
-            enthalpy -= property.formationEnthalpy() * stack.amount() / property.liquidMole();
-        }
-
-        return 20000 * enthalpy / volts;
+        return tier;
     }
 
-    public static int getMaxTier(List<String> items, List<String> fluids) {
-        int max = 0;
+    public static int getMinTier(List<ItemStack> items, List<FluidStack> fluids) {
+        int tier = GTValues.MAX;
         PhysicsProperty property;
-
-        List<MaterialStack> itemMaterials = items.stream().map(CGCKJSRecipeUtils::getMaterialStackFromItemString)
-                .toList();
-        List<MaterialStack> fluidMaterials = fluids.stream()
-                .map(CGCKJSRecipeUtils::getMaterialStackFromFluidString).toList();
-
-        for (MaterialStack stack : itemMaterials) {
-            if (stack.material().hasProperty(CGCPropertyKeys.PHYSICS)) {
-                property = stack.material().getProperty(CGCPropertyKeys.PHYSICS);
-                max = Math.max(max, property.tier());
-            } else {
-                throw new RuntimeException(stack.material().getName() + " has no PP!");
+        if (!items.isEmpty()) {
+            for (ItemStack stack : items) {
+                property = getMaterialFromItemStack(stack).getProperty(PHYSICS);
+                tier = Math.min(property.tier(), tier);
             }
         }
-        for (MaterialStack stack : fluidMaterials) {
-            if (stack.material().hasProperty(CGCPropertyKeys.PHYSICS)) {
-                property = stack.material().getProperty(CGCPropertyKeys.PHYSICS);
-                max = Math.max(max, property.tier());
-            } else {
-                throw new RuntimeException(stack.material().getName() + " has no PP!");
+        if (!fluids.isEmpty()) {
+            for (FluidStack stack : fluids) {
+                property = getMaterialFromFluidStack(stack).getProperty(PHYSICS);
+                tier = Math.min(property.tier(), tier);
+            }
+        }
+        return tier;
+    }
+
+    public static int calculateDuration(List<ItemStack> itemInputs, List<FluidStack> fluidInputs, List<ItemStack> itemOutputs, List<FluidStack> fluidOutputs, int voltage) {
+        double enthalpyChange = 0.0;
+        Material material;
+        if (!itemOutputs.isEmpty()) {
+            for (ItemStack stack : itemOutputs) {
+                material = getMaterialFromItemStack(stack);
+                enthalpyChange += getFormationEnthalpy(material) / getSolidMole(material) * stack.getCount();
+            }
+        }
+        if (!fluidOutputs.isEmpty()) {
+            for (FluidStack stack : fluidOutputs) {
+                material = getMaterialFromFluidStack(stack);
+                enthalpyChange += getFormationEnthalpy(material) / getLiquidMole(material) * stack.getAmount();
+            }
+        }
+        if (!itemInputs.isEmpty()) {
+            for (ItemStack stack : itemInputs) {
+                material = getMaterialFromItemStack(stack);
+                enthalpyChange -= getFormationEnthalpy(material) / getSolidMole(material) * stack.getCount();
+            }
+        }
+        if (!fluidInputs.isEmpty()) {
+            for (FluidStack stack : fluidInputs) {
+                material = getMaterialFromFluidStack(stack);
+                enthalpyChange -= getFormationEnthalpy(material) / getLiquidMole(material) * stack.getAmount();
             }
         }
 
-        return max;
+        return (int) (enthalpyChange / voltage);
     }
 }

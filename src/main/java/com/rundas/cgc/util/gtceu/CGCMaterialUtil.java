@@ -1,6 +1,7 @@
 package com.rundas.cgc.util.gtceu;
 
 import com.google.common.collect.ImmutableList;
+import com.gregtechceu.gtceu.api.data.chemical.ChemicalHelper;
 import com.gregtechceu.gtceu.api.data.chemical.Element;
 import com.gregtechceu.gtceu.api.data.chemical.material.Material;
 import com.gregtechceu.gtceu.api.data.chemical.material.properties.DustProperty;
@@ -9,6 +10,8 @@ import com.gregtechceu.gtceu.api.data.chemical.material.stack.MaterialStack;
 import com.gregtechceu.gtceu.common.unification.material.MaterialRegistryManager;
 
 import com.rundas.cgc.common.material.*;
+import dev.architectury.fluid.FluidStack;
+import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -301,5 +304,45 @@ public class CGCMaterialUtil {
     private static double getPercentageOfElementInCompound(Material material, Material element) {
         int total = getTotalAtomAmount(material);
         return (double) total / getAtomAmount(material, element);
+    }
+
+    public static Material getMaterialFromItemStack(ItemStack stack) {
+        return ChemicalHelper.getMaterialStack(stack).material();
+    }
+
+    public static Material getMaterialFromFluidStack(FluidStack stack) {
+        return ChemicalHelper.getMaterial(stack.getFluid());
+    }
+
+    public static Material getMaterialFromFluidStack(net.minecraftforge.fluids.FluidStack stack) {
+        return ChemicalHelper.getMaterial(stack.getFluid());
+    }
+
+    public static double getFormationEnthalpy(Material material) {
+        if (!material.hasProperty(PHYSICS)) {
+            throw new RuntimeException("Material " + material.getName() + " has no PP!");
+        }
+        return material.getProperty(PHYSICS).formationEnthalpy();
+    }
+
+    public static double getMaterialTier(Material material) {
+        if (!material.hasProperty(PHYSICS)) {
+            throw new RuntimeException("Material " + material.getName() + " has no PP!");
+        }
+        return material.getProperty(PHYSICS).tier();
+    }
+
+    public static int getSolidMole(Material material) {
+        if (!material.hasProperty(PHYSICS)) {
+            throw new RuntimeException("Material " + material.getName() + " has no PP!");
+        }
+        return material.getProperty(PHYSICS).solidMole();
+    }
+
+    public static int getLiquidMole(Material material) {
+        if (!material.hasProperty(PHYSICS)) {
+            throw new RuntimeException("Material " + material.getName() + " has no PP!");
+        }
+        return material.getProperty(PHYSICS).liquidMole();
     }
 }
